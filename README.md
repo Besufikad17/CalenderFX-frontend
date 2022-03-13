@@ -4,8 +4,8 @@ Web based application that provide services related to Ethiopian Calender
 system in the form of web page and outsourced API using npm package called
 abushakir.
 
-## Backend [https://github.com/Besufikad17/CalendarFx-backend]
-## Docs [https://github.com/Besufikad17/CalenderFx-docs]
+Backend [https://github.com/Besufikad17/CalendarFx-backend]
+Docs [https://github.com/Besufikad17/CalenderFx-docs]
 
 ## Available Scripts
 
