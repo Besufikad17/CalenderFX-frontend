@@ -7,7 +7,7 @@ CalenderFx is open-source api built for the purpose of integrating Ethiopian cal
 [Backend](https://github.com/Besufikad17/CalendarFx-backend) 
 [Docs](https://github.com/Besufikad17/CalenderFx-docs)
 
-<br><br>
+<br>
 
 ### AbushakirJs (ባሕረ ሃሳብ)
 
