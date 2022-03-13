@@ -1,5 +1,8 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 import {
     FormGroup,
@@ -15,104 +18,104 @@ import {
     NavLink
 } from 'reactstrap';
 import { login } from "../features/userSlice";
+import { setErrorMsg } from "../features/errorSlice";
 
+const Login = () => {
 
-class Login extends Component {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [msg, setMSG] = useState("");
+    const dispatch = useDispatch();
+    const [isOpen, setIsOpen] = useState({
+        isOp: false
+    });
 
-    state = {
-        isOpen: false,
-        username: null,
-        password: null,
-        msg: null,
-    }
+    const [passwordShown, setPasswordShown] = useState(false);
 
-    componentDidUpdate(prevProps) {
-        
-    }
-
-    toggle = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-
-    choose = (text) => {
-        this.setState({
-            purpose: text
-        })
+    const togglePasswordVisibility = () => {
+        setPasswordShown(passwordShown ? false : true);
     }
 
 
-    onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+    const toggle = () => {
+        setIsOpen({ isOp: !isOpen.isOp })
     }
 
-    submit = e => {
+    const submit = e => {
         e.preventDefault();
 
-        const dispatch = useDispatch();
-
-        const newUser = {
-            username: this.state.username,
-            password: this.state.password,
-        };
-
-        console.log(newUser);
-        dispatch(login({
-            username: this.state.username,
-            password: this.state.password,
-            loggedIn: true,
-        }))
-        
-        this.toggle();
+        axios.post('http://localhost:5000/api/auth', { username, password })
+            .then(res => {
+                dispatch(login(res.data.user))
+                toggle();
+            }).catch(err => {
+                alert(err.response.data.msg);
+                dispatch(setErrorMsg(err.response.data.msg))
+            })
     }
 
-    render() {
-        return (
-            <div>
-                <NavLink onClick={this.toggle} href="#" style={{color: "white"}}>
-                    Login
-                </NavLink>
+    return (
+        <div>
+            <NavLink onClick={toggle} href="#" style={{ color: "white" }}>
+                Login
+            </NavLink>
 
-                <Modal isOpen={this.state.isOpen} toggle={this.toggle}>
-                    <ModalHeader>Login</ModalHeader>
-                    <ModalBody>
-                        <Card body className="text-center" style={{
-                            background: "transparent",
-                            borderStyle: "none"
-                        }}>
-                            <CardText>
-                                {this.state.msg ? (
-                                    <Alert color="danger">{this.state.msg}</Alert>) : (null)}
+            <Modal isOpen={isOpen.isOp} toggle={toggle}>
+                <ModalHeader>Login</ModalHeader>
+                <ModalBody>
+                    <Card body className="text-center" style={{
+                        background: "transparent",
+                        borderStyle: "none"
+                    }}>
+                        <CardText>
+                            {msg ? (
+                                <Alert color="danger">{msg}</Alert>) : (null)}
 
-                                <FormGroup>
-                                    <Input
-                                        type="text"
-                                        placeholder="username"
-                                        name="username"
-                                        onChange={this.onChange}
-                                    /><br />
-                                    <Input
-                                        type="password"
-                                        placeholder="password"
-                                        name="password"
-                                        onChange={this.onChange}
-                                    /><br />
-                                    <InputGroup>
-                                        <input type="checkbox" id="remember-me" />
-                                        <label for="remember-me"> Remember me</label>
-                                    </InputGroup><br />
-                                    <Button style={{ background: "#560027" }} onClick={this.submit}>
-                                        Login
-                                    </Button>
-                                </FormGroup>
-                            </CardText>
-                        </Card>
-                    </ModalBody>
-                </Modal>
-            </div >
-        )
-    }
+                            <FormGroup>
+                                <Input autoComplete="false"
+                                    type="text"
+                                    placeholder="username"
+                                    name="username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                /><br />
+                                <Input autoComplete="false"
+                                    type={passwordShown ? "text" : "password"}
+                                    placeholder="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                /><i onClick={togglePasswordVisibility}
+                                     style= {{ 
+                                         position: "absolute",
+                                         top: "32%",
+                                         right: "8%"
+                                     }}
+                                >
+                                    {passwordShown ? (
+                                        <AiFillEye />
+                                    ) : (
+                                        <AiFillEyeInvisible />
+                                    )
+                                    }
+
+                                </i>
+                                <br />
+                                <InputGroup>
+                                    <input type="checkbox" id="remember-me" />
+                                    <label for="remember-me"> Remember me</label>
+                                </InputGroup><br />
+                                <Button style={{ background: "#560027" }} onClick={submit}>
+                                    Login
+                                </Button>
+                                <p><Link to="/forgot">Forgot password ?</Link></p>
+                            </FormGroup>
+                        </CardText>
+                    </Card>
+                </ModalBody>
+            </Modal>
+        </div >
+    )
 
 }
 

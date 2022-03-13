@@ -1,9 +1,9 @@
 import React from 'react';
-import Form from './Forms';
 import Contact from './Contact';
 import Footer from './Footer';
-import Grid from './Grid';
+import Header from './Header';
 import { useMediaQuery } from './hooks';
+import Endpoints from './Endpoints';
 
 import {
     Card,
@@ -11,11 +11,13 @@ import {
 } from 'reactstrap';
 
 
+
 const Home = () => {
     const mediaMatch = useMediaQuery('(max-width: 1200px)');
-    const numbs = [1,2,3,4,5,6,7,8,9];
+    
     return (
         <div>
+            <Header/>
             <Card body className="text-center" style={{
                 background: "transparent",
                 borderStyle: "none"
@@ -39,7 +41,7 @@ const Home = () => {
                 }}>
                     <CardText>
                         <br /><br />
-                        <h2 style={{ color: "#ffffff" }}>Services</h2>
+                        <h2 style={{ color: "#ffffff" }}>Demo</h2>
                     </CardText>
 
                     <Card body className="text-center" style={{
@@ -47,18 +49,16 @@ const Home = () => {
                         borderStyle: "none",
                         margin: mediaMatch ? "auto" : "0px 20px 0px 20px"
                     }}>
-                        {/* <Calender /> */}
-                        <Grid />
+                        <Endpoints/>        
                     </Card>
 
                     <Card body className="text-center" style={{
                         background: "transparent",
                         borderStyle: "none",
-                        margin: mediaMatch ? "auto" : "0px 320px 0px 320px"
+                        margin: mediaMatch ? "auto" : "0px 20px 0px 20px"
                     }}>
-                        <Form />
+                        <br/>   
                     </Card>
-
                 </Card>
 
             </div>

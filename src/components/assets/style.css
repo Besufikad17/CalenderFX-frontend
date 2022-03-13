@@ -12,6 +12,41 @@ body {
 
 
 }
+
+.container {
+  width: 50%;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+    top: 30px;
+    padding-bottom: 20px;
+    font-size: 24px;
+    font-family: 'Open sans', sans-serif;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+}
+
+.form{
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+}
+
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
     color: #fff;
     background-color: #007dad94;
@@ -548,4 +583,16 @@ footer{
 
 .nav-month {
   font-size: 28px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  text-decoration: none;
 }
