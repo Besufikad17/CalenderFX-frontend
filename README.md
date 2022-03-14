@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# CalenderFx
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+CalenderFx is open-source api built for the purpose of integrating Ethiopian calender system based on npm package called [abushakir-js]('https://www.npmjs.com/package/abushakir') 
 
-In the project directory, you can run:
+[Backend](https://github.com/Besufikad17/CalendarFx-backend) 
+[Docs](https://github.com/Besufikad17/CalenderFx-docs)
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### AbushakirJs (ባሕረ ሃሳብ)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+"Bahire Hasab /'bəhrɛ həsəb'/ " simply means "An age with a descriptive and chronological number". In some books it can also be found as "Hasabe Bahir", in a sense giving time an analogy, resembling a sea.
 
-### `npm test`
+The words Bahire Hasab originate from the ancient language of Ge'ez, ( Arabic: Abu Shakir) is a time-tracking method, devised by the 12th pope of Alexandria, Pope St. Dimitri.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This package allows developers to implement Ethiopian Calendar and Datetime System in their application(s)`.
 
-### `npm run build`
+This package is implemented using the UNIX EPOCH which means it's not a conversion of any other calendar system into Ethiopian, for instance, Gregorian Calendar.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Unix Epoch is measured using milliseconds since 01 Jan, 1970 UTC. In UNIX EPOCH leap seconds are ignored.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Client Implementations
 
-### `npm run eject`
+JSON:API has a great advantage in that since its standardised, API-agnostic tools can be made to abstract away the semantics of consuming and working with the data. It is recommended that you use a JSON:API client to implement the Kitsu API for this reason.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Many implementations in over 13 languages can be found on the [JSON:API website](http://jsonapi.org/implementations/#client-libraries).<br><br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### HTTP Methods
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+| Method | Description                  |
+| ------ | ---------------------------- |
+| GET    | Fetch - retrieve resources   |
+| POST   | Create - create new resource |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### End-points
 
-### Code Splitting
+#### <b>User</b>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This collection of end-points consists of requests to post, get and update user data.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| End-point | Method | Description                     | Body                                           |
+| --------- | ------ | ------------------------------- | ---------------------------------------------- |
+| /signup   | POST   | signing new user         | ``` { username, email, password, purpose } ``` |
+| /login    | POST   | logging to existing account     | ``` { username, password } ```                 |
+| /update   | PUT    | updating username and password) | ``` { newUsername, email, newPassword } ```    |
 
-### Making a Progressive Web App
+ <u>Response</u>
+ 
+| Code | Message |
+| ----- | ----- | 
+| 200 | ``` { token, user : { username, email, password, api_key, role } } ``` |
+| 400 | ``` { msg: "Please enter all fields" } ``` ``` { msg: "user exists" } ``` ``` { msg: "user doesn't exist" } ```|
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+#### <b>Calenderfx-API</b>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This collection of end-points consists of requests to use basic functions of CalendarFx.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| End-point | Method | Description                     | Body | Params |
+| --------- | ------ | ------------------------------- | ---- | ------ |
+| /api/toEC   | POST   | converting GC to EC |    ```{ year, month, day }```     | api_key |
+| /api/toGeez    | GET | converting arabic number to geez |  ```{ number }``` | api_key |
+| /api/getHolidays   |  GET   | getting holidays | ```{}``` | api_key |
+| /api/getTheCurrentDate   | GET    | getting the current date | ```{}``` | api_key |
+| /api/getNextYear   | GET    | getting the next year  | ``` {} ```    | api_key |
+| /api/getPreviousYear  | GET    | getting the previous year | ``` {} ```    | api_key |
+| /api/getNextMonth  | GET    | getting the next month | ``` {} ```    | api_key |
+| /api/getPreviousMonth  | GET    | getting the previous month | ``` {} ```    | api_key |
+| /api/getEvange   | GET    | getting evange | ``` {} ```    | api_key |
 
-### `npm run build` fails to minify
+#### <b>Admin</b>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This collection of end-points consists of requests to get and delete user by the adminstrator .
+
+
+| End-point | Method | Description                     | Body/ Param                                           |
+| --------- | ------ | ------------------------------- | ---------------------------------------------- |
+| /users   | POST   | getting all the users | ``` {} ``` |
+| /user/:id    | POST   | getting user by id | ``` id ```                 |
+| /user/:username   | PUT    | getting user by username | ``` username ```    |
+| /user/remove | Delete | removing user | ``` { id }```|
+
+ <u>Headers</u>
+
+ | Type | Value |
+ | ---- | ----- |
+ | Content-Type | application/json |
+ | x-auth-token | token |
+
+ <u>Response</u>
+ 
+| Code | Message |
+| ----- | ----- | 
+| 200 | ``` { username, email, password, api_key, role, registerd_at, requests } ``` |
+| 400 | ``` { msg: "Please enter all fields" } ``` ``` { msg: "user doesn't exist" } ```|
