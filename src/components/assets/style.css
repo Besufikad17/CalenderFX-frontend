@@ -6,7 +6,10 @@ body {
     line-height: 1.42857143;
     color: #333;
     background-size: 1500px;
-    background: linear-gradient(to right, rgb(255, 98, 124), purple);
+    /*background: linear-gradient(to right, rgb(255, 98, 124), purple);*/
+
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(75,75,187,1) 0%, rgba(0,212,255,1) 100%);
     
     /*background-image: url("bg.jpg")*/
 

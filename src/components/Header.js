@@ -62,7 +62,7 @@ const Header = () => {
                 expand="md"
                 light
             >
-                <NavbarBrand href="/">
+                <NavbarBrand href="/" style={{"color":"white"}}>
                     CalenderFx
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
@@ -72,12 +72,12 @@ const Header = () => {
                         navbar
                     >
                         <NavItem>
-                            <NavLink href="https://besufikad17.github.io/CalenderFx-docs/">
+                            <NavLink href="https://besufikad17.github.io/CalenderFx-docs/" style={{"color":"white"}}>
                                 Docs
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#sec">
+                            <NavLink href="#sec" style={{"color":"white"}}>
                                 Contact
                             </NavLink>
                         </NavItem>
