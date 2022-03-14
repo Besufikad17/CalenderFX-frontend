@@ -72,7 +72,7 @@ const Header = () => {
                         navbar
                     >
                         <NavItem>
-                            <NavLink href="http://127.0.0.1:8000/">
+                            <NavLink href="https://besufikad17.github.io/CalenderFx-docs/">
                                 Docs
                             </NavLink>
                         </NavItem>
