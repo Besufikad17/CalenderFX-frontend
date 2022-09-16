@@ -44,7 +44,7 @@ const Login = () => {
     const submit = e => {
         e.preventDefault();
 
-        axios.post('http://localhost:5000/api/auth', { username, password })
+        axios.post('https://calenderfx-api.onrender.com/api/auth', { username, password })
             .then(res => {
                 dispatch(login(res.data.user))
                 toggle();

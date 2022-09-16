@@ -19,7 +19,7 @@ const Endpoints = () => {
     const mediaMatch = useMediaQuery('(max-width: 1200px)');
 
     const choose = () => {
-        let url = 'http://localhost:5000/api' + buttonText + '?api_key=08e08696620b4149';
+        let url = 'https://calenderfx-api.onrender.com/api' + buttonText + '?api_key=08e08696620b4149';
         axios.get(url)
             .then(res => {
                 setResponse(JSON.stringify(res.data))

@@ -28,7 +28,7 @@ const ForgotPassword = () => {
             comfirmedPassword
         }
 
-        axios.put('http://localhost:5000/api/change_password', update)
+        axios.put('https://calenderfx-api.onrender.com/api/change_password', update)
             .then(res => {
                 console.log(res.data.user);
                 setKey(res.data.user.key);

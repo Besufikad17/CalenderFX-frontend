@@ -52,7 +52,7 @@ const Profile = () => {
             password
         }
 
-        axios.put('http://localhost:5000/api/update', update)
+        axios.put('https://calenderfx-api.onrender.com/api/update', update)
         .then(res => {
             console.log(res.data.user);
             dispatch(update(res.data.user))

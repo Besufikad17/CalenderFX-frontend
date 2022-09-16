@@ -9,7 +9,7 @@ const Admin = () => {
     const [users, setUsers] = useState([]);
 
     const fetchUsers = () => {
-        axios.get('http://localhost:5000/api/users')
+        axios.get('https://calenderfx-api.onrender.com/api/users')
             .then(res => {
                 console.log(res.data);
                 setUsers(res.data);

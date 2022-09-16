@@ -25,7 +25,7 @@ const Form = () => {
         e.preventDefault()
 
         console.log(number);
-        axios.get('http://localhost:5000/api/to_geez?api_key=b2048b2058d8a984', number)
+        axios.get('https://calenderfx-api.onrender.com/api/to_geez?api_key=b2048b2058d8a984', number)
         .then(res => {
             console.log(res.body);
         }).catch(err => {
